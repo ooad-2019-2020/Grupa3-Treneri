@@ -7,6 +7,7 @@ namespace e_Teretana.Models
 {
     public abstract class Korisnik
     {
+        private string ime, prezime, eMail, korisnickoIme, sifra;
         protected Korisnik(string ime, string prezime, string eMail, string korisnickoIme, string sifra)
         {
             Ime = ime;
@@ -16,10 +17,20 @@ namespace e_Teretana.Models
             Sifra = sifra;
         }
 
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
-        public string EMail { get; set; }
-        public string KorisnickoIme { get; set; }
-        public string Sifra { get; set; }
+        public string Ime { get => ime; set => ime=value; }
+        public string Prezime { get => prezime; set => prezime=value; }
+        public string EMail { get => eMail; set => eMail=value; }
+        public string KorisnickoIme { get => korisnickoIme; set => korisnickoIme=value; }
+        public string Sifra { get => sifra; set => sifra=value; }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is Korisnik)
+            {
+                Korisnik k = (Korisnik) obj;
+                return korisnickoIme.Equals(k.korisnickoIme);
+            }
+            return base.Equals(obj);
+        }
     }
 }

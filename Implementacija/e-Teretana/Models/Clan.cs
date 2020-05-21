@@ -7,6 +7,11 @@ namespace e_Teretana.Models
 {
     public class Clan : Korisnik
     {
+        private TipClanarine clanarina;
+        private DateTime datumUclanjivanja;
+        private int brojPosjeta;
+        private bool trenutnoPrisutan;
+        private IPlanIshrane planIshrane;
         public Clan(string ime, string prezime, string eMail, string korisnickoIme, string sifra, TipClanarine clanarina, DateTime datumUclanjivanja, int brojPosjeta, bool trenutnoPrisutan, IPlanIshrane planIshrane) : base(ime, prezime, eMail, korisnickoIme, sifra)
         {
             Clanarina = clanarina;
@@ -16,11 +21,11 @@ namespace e_Teretana.Models
             PlanIshrane = planIshrane;
         }
 
-        public TipClanarine Clanarina { get; set; }
-        public DateTime DatumUclanjivanja { get; set; }
-        public int BrojPosjeta { get; set; }
-        public bool TrenutnoPrisutan { get; set; }
-        public IPlanIshrane PlanIshrane { get; set; }
+        public TipClanarine Clanarina { get => clanarina; set => clanarina=value; }
+        public DateTime DatumUclanjivanja { get => datumUclanjivanja; set => datumUclanjivanja=value; }
+        public int BrojPosjeta { get => brojPosjeta; set => brojPosjeta=value; }
+        public bool TrenutnoPrisutan { get => trenutnoPrisutan; set => trenutnoPrisutan=value; }
+        public IPlanIshrane PlanIshrane { get => planIshrane; set => planIshrane=value; }
        
 
     }

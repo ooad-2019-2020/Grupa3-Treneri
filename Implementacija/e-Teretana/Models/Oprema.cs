@@ -7,6 +7,12 @@ namespace e_Teretana.Models
 {
     public class Oprema : IOprema
     {
+        private string nazivOpreme, opis;
+        private TipZauzetostiOpreme tipZauzetosti;
+        private bool naCekanju;
+        private DateTime pocetniDatum, krajnjiDatum;
+        private Clan korisnikOpreme;
+        private int sifra;
         public Oprema(string nazivOpreme, TipZauzetostiOpreme tipZauzetosti, string opis, bool naCekanju, DateTime pocetniDatum, DateTime krajnjiDatum, Clan korisnikOpreme, int sifra)
         {
             NazivOpreme = nazivOpreme;
@@ -19,13 +25,46 @@ namespace e_Teretana.Models
             Sifra = sifra;
         }
 
-        public string NazivOpreme { get; set; }
-        public TipZauzetostiOpreme TipZauzetosti { get; set; }
-        public string Opis { get; set; }
-        public bool NaCekanju { get; set; }
-        public DateTime PocetniDatum { get; set; }
-        public DateTime KrajnjiDatum { get; set; }
-        public Clan KorisnikOpreme { get; set; }
-        public int Sifra { get; set; }
+        public string NazivOpreme { get => nazivOpreme; set =>nazivOpreme=value; }
+        public TipZauzetostiOpreme TipZauzetosti { get => tipZauzetosti; set=> tipZauzetosti=value; }
+        public string Opis { get => opis; set => opis=value; }
+        public bool NaCekanju { get => naCekanju; set => naCekanju=value; }
+        public DateTime PocetniDatum { get => pocetniDatum; 
+            set {
+                if (TipZauzetosti.Equals(TipZauzetostiOpreme.ZAUZETO) || TipZauzetosti.Equals(TipZauzetostiOpreme.IZNAJMLJENO)) pocetniDatum = value;
+            } }
+        public DateTime KrajnjiDatum { get => krajnjiDatum;
+            set
+            {
+                if (TipZauzetosti.Equals(TipZauzetostiOpreme.ZAUZETO) || TipZauzetosti.Equals(TipZauzetostiOpreme.IZNAJMLJENO)) krajnjiDatum = value;
+            }
+        }
+        public Clan KorisnikOpreme { get => korisnikOpreme;
+            set
+            {
+                if (TipZauzetosti.Equals(TipZauzetostiOpreme.ZAUZETO) || TipZauzetosti.Equals(TipZauzetostiOpreme.IZNAJMLJENO)) korisnikOpreme = value;
+            }
+        }
+        public int Sifra { get => sifra; set => sifra=value; }
+
+        public Oprema dajOpremu(int sifraOpreme)
+        {
+            return this;
+        }
+
+        public override string ToString()
+        {
+            return nazivOpreme + "    " + sifra + "    " + tipZauzetosti;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Oprema)
+            {
+                Oprema o = (Oprema)obj;
+                return sifra == o.sifra;
+            }
+            return base.Equals(obj);
+        }
     }
 }

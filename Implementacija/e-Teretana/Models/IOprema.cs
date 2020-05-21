@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace e_Teretana.Models
 {
-    interface IOprema
+    public interface IOprema
     {
+        public Oprema dajOpremu(int sifraOpreme);
     }
 }

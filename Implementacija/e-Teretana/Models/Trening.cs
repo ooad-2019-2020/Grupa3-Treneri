@@ -12,7 +12,7 @@ namespace e_Teretana.Models
         public string Opis { get; set; }
         public List<Clan> PrijavljeniClanovi { get; set; }
         public TipTreninga Tip { get; set; }
-        public Trener trener { get; set; }
+        public Trener Trener { get; set; }
 
         private Iterator iterator;
 

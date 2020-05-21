@@ -7,11 +7,12 @@ namespace e_Teretana.Models
 {
     public class Trener : Korisnik
     {
+        private Dictionary<DateTime, int> ocjene;
         public Trener(string ime, string prezime, string eMail, string korisnickoIme, string sifra) : base (ime, prezime, eMail, korisnickoIme, sifra)
         {
         }
 
-        public Dictionary<DateTime, int> Ocjene { get; set; }
+        public Dictionary<DateTime, int> Ocjene { get => ocjene; set => ocjene=value; }
         public void dodajOcjenu (int ocjena, DateTime datum)
         {
             Ocjene.Add(datum, ocjena);

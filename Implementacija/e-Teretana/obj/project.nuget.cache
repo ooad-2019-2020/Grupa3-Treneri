@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "phoBGh6ai4jPy0ZuMJfc72UntWhcdEmCe5rGMtcBe0QH691ifYWfHEIkzHzxo0OK4bE+VP02qZSzYeteH7q7zA==",
+  "dgSpecHash": "DXRpnxjYp01dCydrY5K0f8AFdTgTewpWBNDyKjq1ImYXQ6M5vcdx6c6Vx53+xTGC+zgIkEBmQv6SclQk6hfVqg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri2\\Implementacija\\e-Teretana\\e-Teretana.csproj",
+  "projectFilePath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri3\\Implementacija\\e-Teretana\\e-Teretana.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hamid\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.4\\microsoft.aspnetcore.cryptography.internal.3.1.4.nupkg.sha512",
     "C:\\Users\\Hamid\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.4\\microsoft.aspnetcore.cryptography.keyderivation.3.1.4.nupkg.sha512",
