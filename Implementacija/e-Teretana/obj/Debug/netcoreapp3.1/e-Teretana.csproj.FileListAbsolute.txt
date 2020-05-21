@@ -1,0 +1,8 @@
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.csprojAssemblyReference.cache
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.AssemblyInfoInputs.cache
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.AssemblyInfo.cs
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.csproj.CoreCompileInputs.cache
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.RazorAssemblyInfo.cache
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri3\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.RazorAssemblyInfo.cs

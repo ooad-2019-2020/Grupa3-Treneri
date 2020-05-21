@@ -40,7 +40,7 @@ namespace e_Teretana.Models
                 {
                     izvjestaj.Add(o.NazivOpreme + "    " + o.Sifra);
                 }
-                else if ((tip.Equals(TipZauzetostiOpreme.ZAUZETO) || tip.Equals(TipZauzetostiOpreme.IZNAJMLJENO) && o.TipZauzetosti.Equals(tip))
+                else if ((tip.Equals(TipZauzetostiOpreme.ZAUZETO) || tip.Equals(TipZauzetostiOpreme.IZNAJMLJENO) && o.TipZauzetosti.Equals(tip)))
                 {
                     izvjestaj.Add(o.NazivOpreme + "    " + o.Sifra + "    " + o.KorisnikOpreme.KorisnickoIme + "    " + o.KrajnjiDatum);
                 }
@@ -80,6 +80,7 @@ namespace e_Teretana.Models
             return null;
         }
         
-        }
+        
     }
 }
+
