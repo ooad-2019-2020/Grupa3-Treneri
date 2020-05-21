@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj": {}
+    "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri2\\Implementacija\\e-Teretana\\e-Teretana.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj": {
+    "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri2\\Implementacija\\e-Teretana\\e-Teretana.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj",
+        "projectUniqueName": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri2\\Implementacija\\e-Teretana\\e-Teretana.csproj",
         "projectName": "e-Teretana",
-        "projectPath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj",
+        "projectPath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri2\\Implementacija\\e-Teretana\\e-Teretana.csproj",
         "packagesPath": "C:\\Users\\Hamid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\obj\\",
+        "outputPath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri2\\Implementacija\\e-Teretana\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
