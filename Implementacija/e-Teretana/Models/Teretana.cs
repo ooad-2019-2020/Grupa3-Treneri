@@ -127,7 +127,6 @@ namespace e_Teretana.Models
         }
         public void prijaviClanaNaTrening (Clan clan, Trening trening)
         {
-            trening.prijaviClana(clan);
         }
         public List<Trening> dajDanasnjeTreninge()
         {
@@ -214,7 +213,6 @@ namespace e_Teretana.Models
         }
         public void ocijeniTrenera (Trener trener, int ocjena, DateTime datum)
         {
-            trener.dodajOcjenu(ocjena, datum);
         }
 
     }

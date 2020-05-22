@@ -17,10 +17,18 @@ namespace e_Teretana.Models
             VrijemeDodavanja = vrijemeDodavanja;
         }
 
-        public string Naslov { get => naslov; set => naslov=value; }
-        public string Tekst { get => tekst; set => tekst=value; }
-        public string Slika { get => slika; set => slika=value; }
-        public DateTime VrijemeDodavanja { get =>vrijemeDodavanja; set => vrijemeDodavanja=value; }
+        public Novost (DbNovost dbNovost)
+        {
+            Naslov = dbNovost.Naslov;
+            Tekst = dbNovost.Tekst;
+            Slika = dbNovost.Slika;
+            VrijemeDodavanja = dbNovost.VrijemeDodavanja;
+        }
+
+        public string Naslov { get => naslov; set => naslov = value; }
+        public string Tekst { get => tekst; set => tekst = value; }
+        public string Slika { get => slika; set => slika = value; }
+        public DateTime VrijemeDodavanja { get => vrijemeDodavanja; set => vrijemeDodavanja = value; }
 
         public Novost clone()
         {

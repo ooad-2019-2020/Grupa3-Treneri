@@ -7,9 +7,9 @@ namespace e_Teretana.Models
 {
     public class Iterator : IIterator 
     {
-        private List<Clan> prijavljeniClanovi;
+        private ICollection<Clan> prijavljeniClanovi;
         private int index;
-        public Iterator(List<Clan> clanovi, int pozicija)
+        public Iterator(ICollection<Clan> clanovi, int pozicija)
         {
             prijavljeniClanovi = clanovi;
             index = pozicija;
@@ -17,7 +17,7 @@ namespace e_Teretana.Models
 
         public Clan dajSljedeci()
         {
-            return prijavljeniClanovi[index++];
+            return prijavljeniClanovi.ElementAt(index++);
         }
 
         public bool imaJos()

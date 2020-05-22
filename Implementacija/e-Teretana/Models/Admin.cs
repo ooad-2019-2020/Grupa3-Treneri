@@ -13,6 +13,11 @@ namespace e_Teretana.Models
             Prijavljen = prijavljen;
         }
 
-        public bool Prijavljen { get => prijavljen; set=> prijavljen=value; }
+        public Admin(DbKorisnik dbKorisnik, DbAdmin dbAdmin) : base(dbKorisnik)
+        {
+            Prijavljen = dbAdmin.Prijavljen;
+        }
+
+        public bool Prijavljen { get => prijavljen; set => prijavljen = value; }
     }
 }

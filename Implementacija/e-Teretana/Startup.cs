@@ -12,6 +12,7 @@ using e_Teretana.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using e_Teretana.Models;
 
 namespace e_Teretana
 {
@@ -29,7 +30,10 @@ namespace e_Teretana
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DbConnection")));
+            services.AddDbContext<TeretanaContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DbConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();

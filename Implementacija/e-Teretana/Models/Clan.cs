@@ -21,12 +21,20 @@ namespace e_Teretana.Models
             PlanIshrane = planIshrane;
         }
 
-        public TipClanarine Clanarina { get => clanarina; set => clanarina=value; }
-        public DateTime DatumUclanjivanja { get => datumUclanjivanja; set => datumUclanjivanja=value; }
-        public int BrojPosjeta { get => brojPosjeta; set => brojPosjeta=value; }
-        public bool TrenutnoPrisutan { get => trenutnoPrisutan; set => trenutnoPrisutan=value; }
-        public IPlanIshrane PlanIshrane { get => planIshrane; set => planIshrane=value; }
-       
+        public Clan (DbKorisnik dbKorisnik, DbClan dbClan) : base(dbKorisnik)
+        {
+            Clanarina = dbClan.Clanarina;
+            DatumUclanjivanja = dbClan.DatumUclanjivanja;
+            BrojPosjeta = dbClan.BrojPosjeta;
+            TrenutnoPrisutan = dbClan.TrenutnoPrisutan;
+            PlanIshrane = new PocetnickiPlanIshrane();
+        }
+
+        public TipClanarine Clanarina { get => clanarina; set => clanarina = value; }
+        public DateTime DatumUclanjivanja { get => datumUclanjivanja; set => datumUclanjivanja = value; }
+        public int BrojPosjeta { get => brojPosjeta; set => brojPosjeta = value; }
+        public bool TrenutnoPrisutan { get => trenutnoPrisutan; set => trenutnoPrisutan = value; }
+        public IPlanIshrane PlanIshrane { get => planIshrane; set => planIshrane = value; }
 
     }
 }

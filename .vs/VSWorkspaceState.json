@@ -2,7 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\Implementacija",
-    "\\Implementacija\\e-Teretana"
+    "\\Implementacija\\e-Teretana",
+    "\\Implementacija\\e-Teretana\\bin\\Release\\netcoreapp3.1",
+    "\\Implementacija\\e-Teretana\\obj\\Debug",
+    "\\Implementacija\\e-Teretana\\obj\\Debug\\netcoreapp3.1",
+    "\\Implementacija\\e-Teretana\\obj\\Release",
+    "\\Implementacija\\e-Teretana\\obj\\Release\\netcoreapp3.1",
+    "\\Implementacija\\e-Teretana\\wwwroot",
+    "\\Implementacija\\e-Teretana\\wwwroot\\lib"
   ],
   "SelectedNode": "\\Implementacija\\e-Teretana\\e-Teretana.sln",
   "PreviewInSolutionExplorer": false

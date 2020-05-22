@@ -8,8 +8,14 @@ namespace e_Teretana.Models
 {
     public class ProxyOprema : IOprema
     {
-        private List<Oprema> oprema;
+        private List<Oprema> oprema=new List<Oprema>();
         private bool dozvola;
+
+        public ProxyOprema()
+        {
+            //dobaviti listu iz baze
+            dozvola = false;
+        }
         public void pristupi (Clan clan, bool zauzimanje)
         {
             if (zauzimanje == false)

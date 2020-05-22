@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace e_Teretana.Models
 {
-    public class Oprema : IOprema
+    public class Oprema 
     {
         private string nazivOpreme, opis;
         private TipZauzetostiOpreme tipZauzetosti;
@@ -25,27 +25,47 @@ namespace e_Teretana.Models
             Sifra = sifra;
         }
 
-        public string NazivOpreme { get => nazivOpreme; set =>nazivOpreme=value; }
-        public TipZauzetostiOpreme TipZauzetosti { get => tipZauzetosti; set=> tipZauzetosti=value; }
-        public string Opis { get => opis; set => opis=value; }
-        public bool NaCekanju { get => naCekanju; set => naCekanju=value; }
-        public DateTime PocetniDatum { get => pocetniDatum; 
-            set {
+        public Oprema (DbOprema dbOprema)
+        {
+            NazivOpreme = dbOprema.NazivOpreme;
+            TipZauzetosti = dbOprema.TipZauzetosti;
+            Opis = dbOprema.Opis;
+            NaCekanju = dbOprema.NaCekanju;
+            PocetniDatum = dbOprema.PocetniDatum;
+            KrajnjiDatum = dbOprema.KrajnjiDatum;
+            //KorisnikOpreme = korisnikOpreme;
+            Sifra = dbOprema.Sifra;
+        }
+
+        public string NazivOpreme { get => nazivOpreme; set => nazivOpreme = value; }
+        public TipZauzetostiOpreme TipZauzetosti { get => tipZauzetosti; set => tipZauzetosti = value; }
+        public string Opis { get => opis; set => opis = value; }
+        public bool NaCekanju { get => naCekanju; set => naCekanju = value; }
+        public DateTime PocetniDatum
+        {
+            get => pocetniDatum;
+            set
+            {
                 if (TipZauzetosti.Equals(TipZauzetostiOpreme.ZAUZETO) || TipZauzetosti.Equals(TipZauzetostiOpreme.IZNAJMLJENO)) pocetniDatum = value;
-            } }
-        public DateTime KrajnjiDatum { get => krajnjiDatum;
+            }
+        }
+        public DateTime KrajnjiDatum
+        {
+            get => krajnjiDatum;
             set
             {
                 if (TipZauzetosti.Equals(TipZauzetostiOpreme.ZAUZETO) || TipZauzetosti.Equals(TipZauzetostiOpreme.IZNAJMLJENO)) krajnjiDatum = value;
             }
         }
-        public Clan KorisnikOpreme { get => korisnikOpreme;
+        public Clan KorisnikOpreme
+        {
+            get => korisnikOpreme;
             set
             {
                 if (TipZauzetosti.Equals(TipZauzetostiOpreme.ZAUZETO) || TipZauzetosti.Equals(TipZauzetostiOpreme.IZNAJMLJENO)) korisnikOpreme = value;
             }
         }
-        public int Sifra { get => sifra; set => sifra=value; }
+        public int Sifra { get => sifra; set => sifra = value; }
 
         public Oprema dajOpremu(int sifraOpreme)
         {
