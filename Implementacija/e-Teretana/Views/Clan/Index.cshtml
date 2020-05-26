@@ -1,0 +1,53 @@
+﻿@model IEnumerable<e_Teretana.Models.DbClan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Clanarina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatumUclanjivanja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrojPosjeta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrenutnoPrisutan)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clanarina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumUclanjivanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrojPosjeta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrenutnoPrisutan)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DbClanID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DbClanID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DbClanID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -15,11 +16,20 @@ namespace e_Teretana.Models
         private List<Korisnik> zaposleni;
         private Dictionary<int, Clan> zahtjeviZaIznajmljivanje;
         private List<Trening> aktivniTreninzi, prosliTreninzi;
-        private List<Novost> novosti;
+        private List<Novost> novosti = new List<Novost>();
         private ProxyOprema oprema;
 
         private static Teretana uniqueInstance;
-        private Teretana() { }
+        private Teretana() {
+            using (var db = new TeretanaContext()) { 
+                List<DbNovost> novosti2 = db.Novost.ToList(); 
+                foreach(DbNovost n in novosti2)
+                {
+                    novosti.Add(new Novost(n));
+                }
+            }
+
+        }
         public Admin Admin { get => admin; set => admin=value; }
         public Dictionary<Clan, string> RacuniClanova { get => racuniClanova; set => racuniClanova=value; }
         public List<Clan> Clanovi { get => clanovi; set => clanovi=value; }
@@ -35,6 +45,12 @@ namespace e_Teretana.Models
             if (uniqueInstance == null) uniqueInstance = new Teretana();
             return uniqueInstance;
         }
+        public static void removeInstance()
+        {
+            if (uniqueInstance == null) return;
+            uniqueInstance = null;
+        }
+
         public List<String> dajSlobodnuOpremu()
         {
             return oprema.dajIzvjestaj(TipZauzetostiOpreme.SLOBODNO);

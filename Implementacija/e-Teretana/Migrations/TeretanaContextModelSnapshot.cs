@@ -69,18 +69,23 @@ namespace e_Teretana.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EMail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ime")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KorisnickoIme")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prezime")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sifra")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DbKorisnikID");
@@ -98,12 +103,15 @@ namespace e_Teretana.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naslov")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Slika")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tekst")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("VrijemeDodavanja")
@@ -154,9 +162,11 @@ namespace e_Teretana.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("NazivOpreme")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Opis")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PocetniDatum")
@@ -219,12 +229,13 @@ namespace e_Teretana.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Opis")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Tip")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TrenerDbKorisnikID")
+                    b.Property<int>("TrenerDbKorisnikID")
                         .HasColumnType("int");
 
                     b.HasKey("DbTreningID");
@@ -259,7 +270,9 @@ namespace e_Teretana.Migrations
                 {
                     b.HasOne("e_Teretana.Models.DbKorisnik", "Trener")
                         .WithMany()
-                        .HasForeignKey("TrenerDbKorisnikID");
+                        .HasForeignKey("TrenerDbKorisnikID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using e_Teretana.Models;
+using System.Collections;
 
 namespace e_Teretana.Controllers
 {
@@ -20,6 +21,10 @@ namespace e_Teretana.Controllers
 
         public IActionResult Index()
         {
+            List<Novost> novosti = Teretana.getInstance().Novosti;
+            ViewData["Novost1"] = novosti[0];
+            ViewData["Novost2"] = novosti[1];
+            ViewData["Novost3"] = novosti[2];
             return View();
         }
 

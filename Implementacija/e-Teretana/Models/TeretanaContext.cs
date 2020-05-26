@@ -11,6 +11,14 @@ namespace e_Teretana.Models
         public TeretanaContext(DbContextOptions<TeretanaContext> options) : base(options)
         {
         }
+        public TeretanaContext() : base()
+        {
+
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=tcp:ooad.database.windows.net,1433;Initial Catalog=teretana;Persist Security Info=False;User ID=adminaga;Password=Sunlight1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        }
         public DbSet<DbKorisnik> Korisnik { get; set; }
         public DbSet<DbAdmin> Admin { get; set; }
         public DbSet<DbClan> Clan { get; set; }
