@@ -8,7 +8,6 @@ namespace e_Teretana.Models
 {
     public class DbAdmin
     {
-        [ScaffoldColumn(false)]
         public int DbAdminID { get; set; }
         public bool Prijavljen { get; set; }
     }

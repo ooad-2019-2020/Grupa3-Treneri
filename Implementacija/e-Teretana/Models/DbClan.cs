@@ -8,7 +8,6 @@ namespace e_Teretana.Models
 {
     public class DbClan
     {
-        [ScaffoldColumn(false)]
         public int DbClanID {get; set; }
         [Required]
         public TipClanarine Clanarina { get; set; }

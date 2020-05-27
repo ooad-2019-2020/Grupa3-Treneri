@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri3\\Implementacija\\e-Teretana\\e-Teretana.csproj": {}
+    "C:\\Users\\Nermin\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri3\\Implementacija\\e-Teretana\\e-Teretana.csproj": {
+    "C:\\Users\\Nermin\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri3\\Implementacija\\e-Teretana\\e-Teretana.csproj",
+        "projectUniqueName": "C:\\Users\\Nermin\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj",
         "projectName": "e-Teretana",
-        "projectPath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri3\\Implementacija\\e-Teretana\\e-Teretana.csproj",
-        "packagesPath": "C:\\Users\\Hamid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hamid\\Source\\Repos\\Grupa3-Treneri3\\Implementacija\\e-Teretana\\obj\\",
+        "projectPath": "C:\\Users\\Nermin\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\e-Teretana.csproj",
+        "packagesPath": "C:\\Users\\Nermin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nermin\\Source\\Repos\\Grupa3-Treneri\\Implementacija\\e-Teretana\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Hamid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nermin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,6 +77,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"

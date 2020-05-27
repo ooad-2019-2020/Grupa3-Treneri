@@ -8,7 +8,7 @@ namespace e_Teretana.Models
 {
     public class DbRecepcioner
     {
-        [ScaffoldColumn(false)]
+      
         public int DbRecepcionerID { get; set; }
         public DateTime PocetakRadnogVremena { get; set; }
         public DateTime KrajRadnogVremena { get; set; }
