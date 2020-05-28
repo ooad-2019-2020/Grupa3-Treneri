@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace e_Teretana.Models
         private List<Novost> novosti = new List<Novost>();
         private ProxyOprema oprema;
 
+        private TeretanaContext context;
+
         private static Teretana uniqueInstance;
         private Teretana() {
             using (var db = new TeretanaContext()) { 
@@ -27,6 +30,7 @@ namespace e_Teretana.Models
                 {
                     novosti.Add(new Novost(n));
                 }
+                context = new TeretanaContext;
             }
 
         }
@@ -230,6 +234,34 @@ namespace e_Teretana.Models
         public void ocijeniTrenera (Trener trener, int ocjena, DateTime datum)
         {
         }
+        public void dodajClana(DbKorisnik korisnik, DbClan clan)
+        {
+            context.Korisnik.Add(korisnik);
+            context.SaveChanges();
+
+            var kk = context.Korisnik.Where(o => o.EMail.Equals(korisnik.EMail));
+
+            clan.DbClanID = kk.FirstOrDefault().DbKorisnikID;
+
+            context.Database.OpenConnection();
+            try
+            {
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Clan ON");
+
+                context.Clan.Add(clan);
+                context.SaveChanges();
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Clan OFF");
+                clanovi.Add(new Clan(korisnik, clan));
+            }
+            finally
+            {
+                context.Database.CloseConnection();
+            }
+
+        }
+        
+
+        }
 
     }
-}
+

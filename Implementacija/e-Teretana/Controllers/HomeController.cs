@@ -80,30 +80,17 @@ namespace e_Teretana.Controllers
             {
                 if (Convert.ToString(fc["clanarina"]) != null)
                 {
-                    string radiovalue = Convert.ToString(fc["clanarina"]);
+                    string typeValue = Convert.ToString(fc["clanarina"]);
 
-                    var korisnik = new DbKorisnik { Ime = ime, Prezime = prezime, EMail = email, KorisnickoIme = ime + prezime, Sifra = sifra };
+                    TipClanarine tipClanarine = TipClanarine.JEDNOMJESECNA;
+                    if (typeValue.Equals("tromjesecna")) tipClanarine = TipClanarine.TROMJESECNA;
+                    else if (typeValue.Equals("sestomjesecna")) tipClanarine = TipClanarine.SESTOMJESECNA;
 
-                    context.Korisnik.Add(korisnik);
-                    context.SaveChanges();
+                    DbKorisnik korisnik = new DbKorisnik { Ime = ime, Prezime = prezime, EMail = email, KorisnickoIme = ime + prezime, Sifra = sifra };
+                    DbClan clan = new DbClan { Clanarina = tipClanarine, DatumUclanjivanja = DateTime.Now, BrojPosjeta = 0, TrenutnoPrisutan = false, DbClanID = 0 };
+                    
 
-                    var kk = context.Korisnik.Where(o => o.EMail.Equals(email));
-
-                  
-
-                    context.Database.OpenConnection();
-                    try
-                    { 
-                        context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Clan ON");
-                        var clan = new DbClan { Clanarina = TipClanarine.JEDNOMJESECNA, DatumUclanjivanja = DateTime.Now, BrojPosjeta = 0, TrenutnoPrisutan = false, DbClanID = kk.FirstOrDefault().DbKorisnikID };
-                        context.Clan.Add(clan);
-                        context.SaveChanges();
-                        context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Clan OFF");
-                    }
-                    finally
-                    {
-                        context.Database.CloseConnection();
-                    }
+                    Teretana.getInstance().dodajClana(korisnik, clan);
       
                     return RedirectToAction("Login");
                 }
