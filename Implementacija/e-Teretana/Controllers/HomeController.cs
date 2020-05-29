@@ -10,6 +10,7 @@ using System.Collections;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Routing;
 
 namespace e_Teretana.Controllers
 {
@@ -123,7 +124,9 @@ namespace e_Teretana.Controllers
 
             var clan = context.Clan.Where(c => c.DbClanID.Equals(k.DbKorisnikID));
 
-            if (clan.Count() != 0) { prijavljeniKorisnik = new Clan(k, clan.First()); return  RedirectToAction("Index"); }
+            if (clan.Count() != 0) { prijavljeniKorisnik = new Clan(k, clan.First()); return RedirectToAction("Index", new RouteValueDictionary(
+                       new { controller = "Clan", action = "Index" }));
+            }
 
             //    var trener = context.Trener.Where(t => t.DbTrenerID.Equals(k.DbKorisnikID));
 

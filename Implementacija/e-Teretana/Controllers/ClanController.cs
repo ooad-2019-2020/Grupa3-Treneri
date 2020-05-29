@@ -19,10 +19,11 @@ namespace e_Teretana.Controllers
         }
 
         // GET: Clan
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Clan.ToListAsync());
-        }
+   //     public async Task<IActionResult> Index()
+   //     {
+   //         return View(await _context.Clan.ToListAsync());
+   //     }
+
 
         // GET: Clan/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -45,6 +46,23 @@ namespace e_Teretana.Controllers
         // GET: Clan/Create
         public IActionResult Create()
         {
+            return View();
+        }
+
+        public IActionResult Index()
+        {
+            List<Novost> novosti = Teretana.getInstance().Novosti;
+            ViewData["Novost1"] = novosti[0];
+            ViewData["Novost2"] = novosti[1];
+            ViewData["Novost3"] = novosti[2];
+            ViewData["Novost4"] = novosti[0];
+            ViewData["Novost5"] = novosti[1];
+            ViewData["Novost6"] = novosti[2];
+            ViewData["Novost7"] = novosti[0];
+            ViewData["Novost8"] = novosti[1];
+            ViewData["Novost9"] = novosti[2];
+            ViewData["Novost10"] = novosti[0];
+       
             return View();
         }
 
@@ -147,6 +165,16 @@ namespace e_Teretana.Controllers
         private bool DbClanExists(int id)
         {
             return _context.Clan.Any(e => e.DbClanID == id);
+        }
+
+        public async Task<IActionResult> Postavke()
+        {
+            return View();
+        }
+
+        public IActionResult Profil()
+        {
+            return View();
         }
     }
 }

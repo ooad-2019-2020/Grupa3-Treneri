@@ -30,7 +30,7 @@ namespace e_Teretana.Models
                 {
                     novosti.Add(new Novost(n));
                 }
-                context = new TeretanaContext;
+                context = new TeretanaContext();
             }
 
         }
