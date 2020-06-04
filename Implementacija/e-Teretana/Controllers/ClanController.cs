@@ -220,6 +220,30 @@ namespace e_Teretana.Controllers
             return View(prijavljeniClan);
         }
 
+        [Route("/Clan/PrijavaTreninga/{id}")]
+        public async Task<IActionResult> PrijavaTreninga(int id)
+        {
+            DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+            DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+
+            prijavljeniClan = new Clan(k, c);
+            ViewData["clan"] = c;
+            Dictionary<Trening, Trener> treninzi = new Dictionary<Trening, Trener>();
+            List<DbTrening> treninziZaIteriranje = context.Trening.ToList();
+            foreach (DbTrening t in treninziZaIteriranje)
+            {
+                if (t.DatumOdrzavanja > new DateTime())
+                {
+                    treninzi.Add(new Trening(t), new Trener(context.Korisnik.Where(tr => tr.DbKorisnikID == t.DbTrenerID).FirstOrDefault()));
+                    //treninzi.Add(new Trening(t));
+                }
+            }
+            System.Diagnostics.Debug.WriteLine(treninzi.Count);
+            ViewData["treninzi"] = treninzi;
+            ViewData["clan"] = c;
+            return View(prijavljeniClan);
+        }
+
         public IActionResult PromijeniClanarinu (string id, IFormCollection fc)
         {
             DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(Int32.Parse(id))).First();
