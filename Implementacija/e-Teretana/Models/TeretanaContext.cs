@@ -28,6 +28,7 @@ namespace e_Teretana.Models
         public DbSet<DbOprema> Oprema { get; set; }
         public DbSet<DbNovost> Novost { get; set; }
         public DbSet<DbOcjena> Ocjena { get; set; }
+        public DbSet<DbClanTrening> ClanTrening { get; set; }
 
         //Ova funkcija se koriste da bi se ukinulo automatsko dodavanje množine u nazive
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,6 +42,28 @@ namespace e_Teretana.Models
             modelBuilder.Entity<DbOprema>().ToTable("Oprema");
             modelBuilder.Entity<DbNovost>().ToTable("Novost");
             modelBuilder.Entity<DbOcjena>().ToTable("Ocjena");
+            modelBuilder.Entity<DbClan>()
+                .HasKey(x => x.DbClanID);
+
+            modelBuilder.Entity<DbTrening>()
+                .HasKey(x => x.DbTreningID);
+
+            modelBuilder.Entity<DbClanTrening>()
+                .HasKey(x => new { x.DbClanID, x.DbTreningID });
+            modelBuilder.Entity<DbClanTrening>()
+                .HasOne(x => x.DbClan)
+                .WithMany(m => m.Treninzi)
+                .HasForeignKey(x => x.DbClanID);
+            modelBuilder.Entity<DbClanTrening>()
+                .HasOne(x => x.DbTrening)
+                .WithMany(e => e.PrijavljeniClanovi)
+                .HasForeignKey(x => x.DbTreningID);
+
+
+            //modelBuilder.Entity<Trener>()
+            //.HasRequired<Trening>(s => s.Trener)
+            //.WithOne(g => g.Trener)
+            //.HasForeignKey<int>(s => s.TrenerID);
         }
     }
 }

@@ -13,6 +13,11 @@ namespace e_Teretana.Models
         {
         }
 
+        public Trener (DbKorisnik korisnik) : base (korisnik)
+        {
+
+        }
+
         public List<DbOcjena> Ocjene { get => ocjene; set => ocjene = value; }
         public void dodajOcjenu(int ocjena, DateTime datum)
         {

@@ -17,7 +17,12 @@
     <link rel="stylesheet" href="css/assets3/css/styles.css">
 </head>
 
+
 <body>
+    @{
+        var clan = ViewData["clan"] as DbClan;
+        int idClana = clan.DbClanID;
+    }
     <div>
         <div class="container">
             <div class="row">
@@ -41,11 +46,12 @@
                     <div class="row">
                         <div class="col">
                             <form asp-action="Promijeni">
-                                <label>Ime:</label><input class="form-control" type="text" value="@Model.Ime">
-                                <label>Prezime:</label><input class="form-control" type="text" value="@Model.Prezime">
-                                <label>E-mail:</label><input class="form-control" type="email" value="@Model.EMail">
-                                <label>Šifra:</label><input class="form-control" type="password" value="">
-                                <label>Potvrdi šifru:</label><input class="form-control" type="password" value="">
+                                <input class="form-control" type="hidden" name="id" value="@idClana">
+                                <label>Ime:</label><input class="form-control" type="text" name="ime" value="@Model.Ime">
+                                <label>Prezime:</label><input class="form-control" type="text" name="prezime" value="@Model.Prezime">
+                                <label>E-mail:</label><input class="form-control" type="email" name="email" value="@Model.EMail">
+                                <label>Šifra:</label><input class="form-control" type="password" name="sifra" value="@Model.Sifra">
+                                <label>Potvrdi šifru:</label><input class="form-control" type="password" name="ponovljenaSifra" value="@Model.Sifra">
                                 <button class="btn btn-primary btn-block" type="submit">Sačuvaj promjene</button>
 
                             </form>
@@ -60,9 +66,14 @@
                                 <div class="col">
                                     <h3>Produži članarinu</h3>
                                     <p>Odaberi vrstu članarine:</p>
-                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-3"><label class="form-check-label" for="formCheck-3">Jednomjesečna članarina</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Tromjesečna članarina</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Šestomjesečna članarina</label></div><button class="btn btn-primary bg-info" type="button">Nastavi dalje na plaćanje</button>
+                                    <form asp-action="PromijeniClanarinu">
+                                        <input class="form-control" type="hidden" name="id" value="@idClana">
+                                        <div class="form-group">
+                                            <input type="radio" name="clanarina" value="jednomjesecna" >Jednomjesečna članarina<br>
+                                            <input type="radio" name="clanarina" value="tromjesecna" >Tromjesečna članarina<br>
+                                            <input type="radio" name="clanarina" value="sestomjesecna" >Šestomjesečna članarina<br>
+                                        </div><button class="btn btn-primary bg-info" type="submit">Nastavi dalje na plaćanje</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -78,11 +89,10 @@
     <script src="css/assets3/js/Sidebar-Menu.js"></script>
 </body>
 
-@if (ViewBag.Promijeni != null)
+@if (ViewBag.Podaci != null)
 {
     <h4>
-        @ViewBag.Promijeni
+        @ViewBag.Podaci
     </h4>
 }
-
 </html>

@@ -22,7 +22,7 @@ namespace e_Teretana.Models
             Ime = dbKorisnik.Ime;
             Prezime = dbKorisnik.Prezime;
             EMail = dbKorisnik.EMail;
-            KorisnickoIme = dbKorisnik.EMail;
+            KorisnickoIme = dbKorisnik.KorisnickoIme;
             Sifra = dbKorisnik.Sifra;
         }
 

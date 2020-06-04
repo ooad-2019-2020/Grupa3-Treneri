@@ -15,5 +15,6 @@ namespace e_Teretana.Models
         public DateTime DatumUclanjivanja { get; set; }
         public int BrojPosjeta { get; set; }
         public bool TrenutnoPrisutan { get; set; }
+        public virtual List<DbClanTrening> Treninzi { get; set; }
     }
 }

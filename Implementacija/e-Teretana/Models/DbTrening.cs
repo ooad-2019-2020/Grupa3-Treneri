@@ -14,10 +14,10 @@ namespace e_Teretana.Models
         public int Kapacitet { get; set; }
         [Required]
         public string Opis { get; set; }
-        public virtual ICollection<DbKorisnik> PrijavljeniClanovi { get; set; }
+        public virtual List<DbClanTrening> PrijavljeniClanovi { get; set; }
         [Required]
         public TipTreninga Tip { get; set; }
         [Required]
-        public virtual DbKorisnik Trener { get; set; }
+        public int DbTrenerID { get; set; }
     }
 }

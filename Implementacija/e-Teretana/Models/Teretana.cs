@@ -212,12 +212,41 @@ namespace e_Teretana.Models
                 }
             }
         }
-        public void promijeniAtributeKorisnika (Korisnik stariKorisnik, Korisnik noviKorisnik)
+        public void promijeniAtributeKorisnika (int id, Korisnik noviKorisnik)
         {
-            stariKorisnik.Ime = noviKorisnik.Ime;
-            stariKorisnik.Prezime = noviKorisnik.Prezime;
-            stariKorisnik.EMail = noviKorisnik.EMail;
-            stariKorisnik.Sifra = noviKorisnik.Sifra;
+            //System.Diagnostics.Debug.WriteLine(stariKorisnik.Ime + " - " + noviKorisnik.Ime);
+            context.Database.OpenConnection();
+            try
+            {
+                if (noviKorisnik is Clan)
+                {
+                    int tip = 0;
+                    if(((Clan)noviKorisnik).Clanarina == TipClanarine.TROMJESECNA)
+                    {
+                        tip = 1;
+                    }else if (((Clan)noviKorisnik).Clanarina == TipClanarine.SESTOMJESECNA)
+                    {
+                        tip = 2;
+                    }
+                    //context.Korisnik.Find()
+                    //System.Diagnostics.Debug.WriteLine(stariKorisnik.KorisnickoIme + " - " + noviKorisnik.KorisnickoIme);
+                    System.Diagnostics.Debug.WriteLine("UPDATE Clan SET Clanarina = '" + ((Clan)noviKorisnik).Clanarina + "' WHERE DbCLanID = " + id + "; ");
+                    context.Database.ExecuteSqlCommand("UPDATE Clan SET Clanarina = " + tip + " WHERE DbCLanID = " + id + "; ");
+                    context.SaveChanges();
+                }
+                //System.Diagnostics.Debug.WriteLine(stariKorisnik.KorisnickoIme + " - " + noviKorisnik.KorisnickoIme);
+                context.Database.ExecuteSqlCommand("UPDATE Korisnik SET Ime = '" + noviKorisnik.Ime + "', Prezime = '" + noviKorisnik.Prezime + "', EMail = '" + noviKorisnik.EMail + "', Sifra = '" + noviKorisnik.Sifra + "' WHERE DbKorisnikID = '" + id + "'; ");
+                context.SaveChanges();
+                
+            }
+            finally
+            {
+                context.Database.CloseConnection();
+            }
+            //stariKorisnik.Ime = noviKorisnik.Ime;
+            //stariKorisnik.Prezime = noviKorisnik.Prezime;
+            //stariKorisnik.EMail = noviKorisnik.EMail;
+            //stariKorisnik.Sifra = noviKorisnik.Sifra;
         }
         public void dodajRacun (Clan clan, string racun)
         {

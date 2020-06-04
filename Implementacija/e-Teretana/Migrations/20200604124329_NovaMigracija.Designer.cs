@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_Teretana.Models;
 
 namespace e_Teretana.Migrations
 {
     [DbContext(typeof(TeretanaContext))]
-    partial class TeretanaContextModelSnapshot : ModelSnapshot
+    [Migration("20200604124329_NovaMigracija")]
+    partial class NovaMigracija
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,27 +52,17 @@ namespace e_Teretana.Migrations
                     b.Property<DateTime>("DatumUclanjivanja")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DbTreningID")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TrenutnoPrisutan")
                         .HasColumnType("bit");
 
                     b.HasKey("DbClanID");
 
-                    b.ToTable("Clan");
-                });
-
-            modelBuilder.Entity("e_Teretana.Models.DbClanTrening", b =>
-                {
-                    b.Property<int>("DbClanID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DbTreningID")
-                        .HasColumnType("int");
-
-                    b.HasKey("DbClanID", "DbTreningID");
-
                     b.HasIndex("DbTreningID");
 
-                    b.ToTable("ClanTrening");
+                    b.ToTable("Clan");
                 });
 
             modelBuilder.Entity("e_Teretana.Models.DbKorisnik", b =>
@@ -235,9 +227,6 @@ namespace e_Teretana.Migrations
                     b.Property<DateTime>("DatumOdrzavanja")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DbTrenerID")
-                        .HasColumnType("int");
-
                     b.Property<int>("Kapacitet")
                         .HasColumnType("int");
 
@@ -248,24 +237,21 @@ namespace e_Teretana.Migrations
                     b.Property<int>("Tip")
                         .HasColumnType("int");
 
+                    b.Property<int>("TrenerDbKorisnikID")
+                        .HasColumnType("int");
+
                     b.HasKey("DbTreningID");
+
+                    b.HasIndex("TrenerDbKorisnikID");
 
                     b.ToTable("Trening");
                 });
 
-            modelBuilder.Entity("e_Teretana.Models.DbClanTrening", b =>
+            modelBuilder.Entity("e_Teretana.Models.DbClan", b =>
                 {
-                    b.HasOne("e_Teretana.Models.DbClan", "DbClan")
-                        .WithMany("Treninzi")
-                        .HasForeignKey("DbClanID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("e_Teretana.Models.DbTrening", "DbTrening")
+                    b.HasOne("e_Teretana.Models.DbTrening", null)
                         .WithMany("PrijavljeniClanovi")
-                        .HasForeignKey("DbTreningID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DbTreningID");
                 });
 
             modelBuilder.Entity("e_Teretana.Models.DbOcjena", b =>
@@ -280,6 +266,15 @@ namespace e_Teretana.Migrations
                     b.HasOne("e_Teretana.Models.DbKorisnik", "KorisnikOpreme")
                         .WithMany()
                         .HasForeignKey("KorisnikOpremeDbKorisnikID");
+                });
+
+            modelBuilder.Entity("e_Teretana.Models.DbTrening", b =>
+                {
+                    b.HasOne("e_Teretana.Models.DbKorisnik", "Trener")
+                        .WithMany()
+                        .HasForeignKey("TrenerDbKorisnikID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

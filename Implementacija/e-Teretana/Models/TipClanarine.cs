@@ -7,8 +7,8 @@ namespace e_Teretana.Models
 {
     public enum TipClanarine
     {
-        JEDNOMJESECNA,
-        TROMJESECNA,
-        SESTOMJESECNA
+        JEDNOMJESECNA = 0,
+        TROMJESECNA = 1,
+        SESTOMJESECNA = 2
     }
 }

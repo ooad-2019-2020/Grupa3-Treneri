@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_Teretana.Models;
 
 namespace e_Teretana.Migrations
 {
     [DbContext(typeof(TeretanaContext))]
-    partial class TeretanaContextModelSnapshot : ModelSnapshot
+    [Migration("20200604190605_NovaMigracija5")]
+    partial class NovaMigracija5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

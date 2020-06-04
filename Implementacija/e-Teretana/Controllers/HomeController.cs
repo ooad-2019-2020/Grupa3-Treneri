@@ -86,12 +86,11 @@ namespace e_Teretana.Controllers
                     TipClanarine tipClanarine = TipClanarine.JEDNOMJESECNA;
                     if (typeValue.Equals("tromjesecna")) tipClanarine = TipClanarine.TROMJESECNA;
                     else if (typeValue.Equals("sestomjesecna")) tipClanarine = TipClanarine.SESTOMJESECNA;
-
                     DbKorisnik korisnik = new DbKorisnik { Ime = ime, Prezime = prezime, EMail = email, KorisnickoIme = ime + prezime, Sifra = sifra };
                     DbClan clan = new DbClan { Clanarina = tipClanarine, DatumUclanjivanja = DateTime.Now, BrojPosjeta = 0, TrenutnoPrisutan = false, DbClanID = 0 };
                     
 
-                    Teretana.getInstance().dodajClana(korisnik, clan);
+                    Teretana.getInstance().dodajClana(korisnik,clan);
       
                     return RedirectToAction("Login");
                 }
