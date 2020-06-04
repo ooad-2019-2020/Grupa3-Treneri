@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@model Clan
 <html>
 
 <head>
@@ -39,9 +40,14 @@
                     <h1>Postavke profila</h1>
                     <div class="row">
                         <div class="col">
-                            <form>
-                                <label>Ime:</label><input class="form-control" type="text"><label>Prezime:</label><input class="form-control" type="text"><label>E-mail:</label><input class="form-control" type="text"><label>Šifra:</label><input class="form-control"
-                                                                                                                                                                                                                                                    type="text"><label>Potvrdi šifru:</label><input class="form-control" type="text"><button class="btn btn-primary bg-info" type="button">Potvrdi izmjene</button>
+                            <form asp-action="Promijeni">
+                                <label>Ime:</label><input class="form-control" type="text" value="@Model.Ime">
+                                <label>Prezime:</label><input class="form-control" type="text" value="@Model.Prezime">
+                                <label>E-mail:</label><input class="form-control" type="email" value="@Model.EMail">
+                                <label>Šifra:</label><input class="form-control" type="password" value="">
+                                <label>Potvrdi šifru:</label><input class="form-control" type="password" value="">
+                                <button class="btn btn-primary btn-block" type="submit">Sačuvaj promjene</button>
+
                             </form>
                         </div>
                         <div class="col">
@@ -71,5 +77,12 @@
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script src="css/assets3/js/Sidebar-Menu.js"></script>
 </body>
+
+@if (ViewBag.Promijeni != null)
+{
+    <h4>
+        @ViewBag.Promijeni
+    </h4>
+}
 
 </html>

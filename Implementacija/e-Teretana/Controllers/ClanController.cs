@@ -11,11 +11,12 @@ namespace e_Teretana.Controllers
 {
     public class ClanController : Controller
     {
-        private readonly TeretanaContext _context;
+        private readonly TeretanaContext context;
+        private Clan prijavljeniClan;
 
         public ClanController(TeretanaContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // GET: Clan
@@ -33,7 +34,7 @@ namespace e_Teretana.Controllers
                 return NotFound();
             }
 
-            var dbClan = await _context.Clan
+            var dbClan = await context.Clan
                 .FirstOrDefaultAsync(m => m.DbClanID == id);
             if (dbClan == null)
             {
@@ -49,9 +50,15 @@ namespace e_Teretana.Controllers
             return View();
         }
 
-        public IActionResult Index()
+        [Route("/Clan/Index/{id}")]
+        public IActionResult Index(int id)
         {
-            List<Novost> novosti = Teretana.getInstance().Novosti;
+            DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+            DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+
+            prijavljeniClan = new Clan(k, c);
+
+            List <Novost> novosti = Teretana.getInstance().Novosti;
             ViewData["Novost1"] = novosti[0];
             ViewData["Novost2"] = novosti[1];
             ViewData["Novost3"] = novosti[2];
@@ -62,8 +69,8 @@ namespace e_Teretana.Controllers
             ViewData["Novost8"] = novosti[1];
             ViewData["Novost9"] = novosti[2];
             ViewData["Novost10"] = novosti[0];
-       
-            return View();
+
+            return View(k);
         }
 
         // POST: Clan/Create
@@ -75,8 +82,8 @@ namespace e_Teretana.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dbClan);
-                await _context.SaveChangesAsync();
+                context.Add(dbClan);
+                await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(dbClan);
@@ -90,7 +97,7 @@ namespace e_Teretana.Controllers
                 return NotFound();
             }
 
-            var dbClan = await _context.Clan.FindAsync(id);
+            var dbClan = await context.Clan.FindAsync(id);
             if (dbClan == null)
             {
                 return NotFound();
@@ -114,8 +121,8 @@ namespace e_Teretana.Controllers
             {
                 try
                 {
-                    _context.Update(dbClan);
-                    await _context.SaveChangesAsync();
+                    context.Update(dbClan);
+                    await context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -141,7 +148,7 @@ namespace e_Teretana.Controllers
                 return NotFound();
             }
 
-            var dbClan = await _context.Clan
+            var dbClan = await context.Clan
                 .FirstOrDefaultAsync(m => m.DbClanID == id);
             if (dbClan == null)
             {
@@ -156,25 +163,40 @@ namespace e_Teretana.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var dbClan = await _context.Clan.FindAsync(id);
-            _context.Clan.Remove(dbClan);
-            await _context.SaveChangesAsync();
+            var dbClan = await context.Clan.FindAsync(id);
+            context.Clan.Remove(dbClan);
+            await  context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DbClanExists(int id)
         {
-            return _context.Clan.Any(e => e.DbClanID == id);
+            return context.Clan.Any(e => e.DbClanID == id);
         }
 
-        public async Task<IActionResult> Postavke()
+     
+        [Route("/Clan/Postavke/{id}")]
+        public async Task<IActionResult> Postavke(int id)
         {
-            return View();
+            DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+            DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+
+            prijavljeniClan = new Clan(k, c);
+          
+            return View(prijavljeniClan);
         }
 
         public IActionResult Profil()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Promijeni(string ime, string prezime, string email, string sifra, string ponovljenasifra)
+        {
+            prijavljeniClan.Ime = ime;
+            return RedirectToAction("Profil");
+        }
+
     }
 }

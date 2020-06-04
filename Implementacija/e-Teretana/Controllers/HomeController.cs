@@ -100,7 +100,12 @@ namespace e_Teretana.Controllers
 
         }
 
+
+        [Route("/Home")]
+        [Route("~/")]
+        [Route("/Home/Login")]
         [HttpPost]
+
         public IActionResult Login(string korisnickoIme, string sifra)
         {
             if (sifra == null || korisnickoIme == null || sifra.Count() == 0 || korisnickoIme.Count() == 0)
@@ -125,7 +130,7 @@ namespace e_Teretana.Controllers
             var clan = context.Clan.Where(c => c.DbClanID.Equals(k.DbKorisnikID));
 
             if (clan.Count() != 0) { prijavljeniKorisnik = new Clan(k, clan.First()); return RedirectToAction("Index", new RouteValueDictionary(
-                       new { controller = "Clan", action = "Index" }));
+                       new { controller = "Clan", action = "Index", id = k.DbKorisnikID}));
             }
 
             //    var trener = context.Trener.Where(t => t.DbTrenerID.Equals(k.DbKorisnikID));

@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+@model DbKorisnik
 <html>
 
 <head>
@@ -25,7 +26,7 @@
         var n8 = ViewData["Novost8"] as Novost;
         var n9 = ViewData["Novost8"] as Novost;
         var n10 = ViewData["Novost10"] as Novost;
-      
+
     }
     <div>
         <div class="container">
@@ -40,7 +41,7 @@
                                 <li> <a class="text-dark" href="#">Zauzmi opremu</a></li>
                                 <li> <a class="text-dark" href="#">Prijavi trening</a></li>
                                 <li> <a class="nav-link text-dark" asp-area="" asp-controller="Clan" asp-action="Profil">Posjeti profil</a></li>
-                                <li> <a class="nav-link text-dark" asp-area="" asp-controller="Clan" asp-action="Postavke">Postavke</a></li>
+                                <li><a href="/Clan/Postavke/@Model.DbKorisnikID">Postavke profila</a></li>
                             </ul>
                         </div>
                     </aside>
