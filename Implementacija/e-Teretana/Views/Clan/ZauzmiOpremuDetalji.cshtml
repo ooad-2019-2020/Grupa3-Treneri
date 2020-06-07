@@ -48,10 +48,11 @@
             font-size: 20px; /* Increased text to enable scrolling */
             padding: 0px 10px;
         }
+
         .button4 {
             background-color: #e7e7e7;
             color: black;
-        } 
+        }
     </style>
 
 </head>
@@ -60,7 +61,7 @@
     @{
         var clan = ViewData["clan"] as DbClan;
         var username = ViewData["username"] as string;
-        var trening = ViewData["trening"] as Trening;
+        var oprema = ViewData["oprema"] as Oprema;
     }
     <div>
         <div class="container">
@@ -77,16 +78,14 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-9 col-xl-9">
-                    <h1>Detalji o treningu</h1>
-                    <h4>Opis: </h4>
-                    <p>@trening.Opis</p>
-                    <h4>Datum održavanja: </h4>
-                    <p>@trening.DatumOdrzavanja</p>
-                    <h4>Trener: </h4>
-                    <p>@trening.Trener.Ime @trening.Trener.Prezime</p>
-                    <h4>Kapacitet: </h4>
-                    <p>@trening.Kapacitet</p>
-                        <button class="button4" type="submit" ><a asp-area="" asp-controller="Clan" asp-action="PrijavaNaTrening" asp-route-id=@clan.DbClanID asp-route-treningID=@trening.ID>Prijavi se</a></button>
+                    <h1>Detalji o opremi</h1>
+                    <h4>Naziv opreme: </h4>
+                    <p>@oprema.NazivOpreme</p>
+                    <h4>Opis opreme: </h4>
+                    <p>@oprema.Opis</p>
+                    <h4>Šifra opreme: </h4>
+                    <p>@oprema.Sifra </p>
+                    <button class="button4" type="submit"><a asp-area="" asp-controller="Clan" asp-action="ZauzmiOpremu" asp-route-id=@clan.DbClanID asp-route-opremaID=@oprema.ID>Zauzmi</a></button>
                 </div>
             </div>
         </div>

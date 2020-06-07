@@ -177,6 +177,12 @@ namespace e_Teretana.Controllers
             DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
 
             prijavljeniClan = new Clan(k, c);
+
+            DateTime date = prijavljeniClan.DatumUclanjivanja;
+            if (prijavljeniClan.Clanarina == TipClanarine.JEDNOMJESECNA) date = date.AddDays(30);
+            else if (prijavljeniClan.Clanarina == TipClanarine.TROMJESECNA) date = date.AddDays(90);
+            else if (prijavljeniClan.Clanarina == TipClanarine.SESTOMJESECNA) date =  date.AddDays(180);
+            ViewData["date"] = date.ToString().Substring(0,8);
             ViewData["clan"] = c;
             ViewData["username"] = prijavljeniClan.Ime;
             //ViewData["korisnik"] = k;
@@ -209,7 +215,16 @@ namespace e_Teretana.Controllers
                     //treninzi.Add(new Trening(t));
                 }
             }
-            System.Diagnostics.Debug.WriteLine(treninzi.Count);
+
+            List<DbOprema> iznajmljenaOprema = context.Oprema.Where(o => o.KorisnikOpreme != null &&  o.KorisnikOpreme.DbKorisnikID == id && o.TipZauzetosti == TipZauzetostiOpreme.IZNAJMLJENO).ToList();
+            List<Oprema> oprema = new List<Oprema>();
+
+            foreach(DbOprema o in iznajmljenaOprema)
+            {
+                oprema.Add(new Oprema(context.Oprema.Where(x => x.DbOpremaID == o.DbOpremaID).FirstOrDefault()));
+            }
+
+            ViewData["oprema"] = oprema;
             ViewData["treninzi"] = treninzi;
             ViewData["username"] = prijavljeniClan.Ime;
             return View(prijavljeniClan);
@@ -242,6 +257,61 @@ namespace e_Teretana.Controllers
             return View(prijavljeniClan);
         }
 
+        [Route("/Clan/IznajmljivanjeOpreme/{id}")]
+        public async Task<IActionResult> IznajmljivanjeOpreme(int id)
+        {
+           DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+           DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+       
+           prijavljeniClan = new Clan(k, c);
+           ViewData["clan"] = c;
+           List < DbOprema > opremaZaIznajmljivanje = context.Oprema.ToList();
+           List<Oprema> oprema = new List<Oprema>();
+       
+       
+           foreach (DbOprema o in opremaZaIznajmljivanje)
+           {
+                System.Diagnostics.Debug.WriteLine("DB" + o.DbOpremaID);
+                Oprema oo = new Oprema(o);
+                System.Diagnostics.Debug.WriteLine("DB" + oo.ID);
+                if (o.TipZauzetosti == TipZauzetostiOpreme.SLOBODNO && context.Oprema.Where(x => x.DbOpremaID == o.DbOpremaID).FirstOrDefault() != null) { 
+               oprema.Add(new Oprema(context.Oprema.Where(x => x.DbOpremaID == o.DbOpremaID).FirstOrDefault()));
+           }
+           }
+           System.Diagnostics.Debug.WriteLine("desilo se");
+           ViewData["oprema"] = oprema;
+            ViewData["username"] = prijavljeniClan.Ime;
+            return View(prijavljeniClan);
+        }
+
+        [Route("/Clan/ZauzimanjeOpreme/{id}")]
+        public async Task<IActionResult> ZauzimanjeOpreme(int id)
+        {
+            DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+            DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+
+            prijavljeniClan = new Clan(k, c);
+            ViewData["clan"] = c;
+            List<DbOprema> opremaZaZauzimanje = context.Oprema.ToList();
+            List<Oprema> oprema = new List<Oprema>();
+
+
+            foreach (DbOprema o in opremaZaZauzimanje)
+            {
+                System.Diagnostics.Debug.WriteLine("DB" + o.DbOpremaID);
+                Oprema oo = new Oprema(o);
+                System.Diagnostics.Debug.WriteLine("DB" + oo.ID);
+                if (o.TipZauzetosti == TipZauzetostiOpreme.SLOBODNO && context.Oprema.Where(x => x.DbOpremaID == o.DbOpremaID).FirstOrDefault() != null)
+                {
+                    oprema.Add(new Oprema(context.Oprema.Where(x => x.DbOpremaID == o.DbOpremaID).FirstOrDefault()));
+                }
+            }
+            System.Diagnostics.Debug.WriteLine("desilo se");
+            ViewData["oprema"] = oprema;
+            ViewData["username"] = prijavljeniClan.Ime;
+            return View(prijavljeniClan);
+        }
+
         [Route("/Clan/TreningDetalji/{id}")]
         public async Task<IActionResult> TreningDetalji(int id, int treningID)
         {
@@ -256,6 +326,53 @@ namespace e_Teretana.Controllers
             return View(prijavljeniClan);
         }
 
+        [Route("/Clan/IznajmiOpremuDetalji/{id}")]
+        public async Task<IActionResult> IznajmiOpremuDetalji(int id, int opremaID)
+        {
+            DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+            DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+            System.Diagnostics.Debug.WriteLine("primljeni id" + opremaID);
+            Oprema oprema = new Oprema(context.Oprema.Where(x => x.DbOpremaID == opremaID).FirstOrDefault());
+            prijavljeniClan = new Clan(k, c);
+            ViewData["clan"] = c;
+            ViewData["oprema"] = oprema;
+            ViewData["username"] = prijavljeniClan.Ime;
+            return View(prijavljeniClan);
+        }
+
+        public IActionResult IznajmiOpremu(string id, string opremaID)
+        {
+            System.Diagnostics.Debug.WriteLine("UPDATE.[dbo].[Oprema] SET TipZauzetosti = 1 , KorisnikOpremeDbKorisnikID = " + Int32.Parse(id) +  " WHERE DbOpremaID = " + Int32.Parse(opremaID) + "; ");
+            context.Database.ExecuteSqlCommand("UPDATE.[dbo].[Oprema] SET TipZauzetosti = 1 , KorisnikOpremeDbKorisnikID = " + Int32.Parse(id) + ", KrajnjiDatum = DATEADD(day, 15, SYSDATETIME())   WHERE DbOpremaID = " + Int32.Parse(opremaID) + "; "  );
+            context.SaveChanges();
+            System.Diagnostics.Debug.WriteLine("DODJE DO OVOG DIJELA TU ");
+            return RedirectToAction("IznajmljivanjeOpreme", new { id = Int32.Parse(id) });
+        }
+
+        [Route("/Clan/ZauzmiOpremuDetalji/{id}")]
+        public async Task<IActionResult> ZauzmiOpremuDetalji(int id, int opremaID)
+        {
+            DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+            DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+            System.Diagnostics.Debug.WriteLine("primljeni id" + opremaID);
+            Oprema oprema = new Oprema(context.Oprema.Where(x => x.DbOpremaID == opremaID).FirstOrDefault());
+            prijavljeniClan = new Clan(k, c);
+            ViewData["clan"] = c;
+            ViewData["oprema"] = oprema;
+            ViewData["username"] = prijavljeniClan.Ime;
+            return View(prijavljeniClan);
+        }
+
+        public IActionResult ZauzmiOpremu(string id, string opremaID)
+        {
+            System.Diagnostics.Debug.WriteLine("UPDATE.[dbo].[Oprema] SET TipZauzetosti = 2 , KorisnikOpremeDbKorisnikID = " + Int32.Parse(id) + " WHERE DbOpremaID = " + Int32.Parse(opremaID) + "; ");
+            context.Database.ExecuteSqlCommand("UPDATE.[dbo].[Oprema] SET TipZauzetosti = 2 , KorisnikOpremeDbKorisnikID = " + Int32.Parse(id) + ", KrajnjiDatum = DATEADD(hour, 1, SYSDATETIME())   WHERE DbOpremaID = " + Int32.Parse(opremaID) + "; ");
+            context.SaveChanges();
+            System.Diagnostics.Debug.WriteLine("DODJE DO OVOG DIJELA TU ");
+            return RedirectToAction("ZauzimanjeOpreme", new { id = Int32.Parse(id) });
+        }
+
+
         public IActionResult PromijeniClanarinu (string id, IFormCollection fc)
         {
             DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(Int32.Parse(id))).First();
@@ -268,10 +385,16 @@ namespace e_Teretana.Controllers
                 {
                     string typeValue = Convert.ToString(fc["clanarina"]);
 
+                    DateTime date = prijavljeniClan.DatumUclanjivanja;
+                    if (prijavljeniClan.Clanarina == TipClanarine.JEDNOMJESECNA) date = date.AddDays(30);
+                    else if (prijavljeniClan.Clanarina == TipClanarine.TROMJESECNA) date = date.AddDays(90);
+                    else if (prijavljeniClan.Clanarina == TipClanarine.SESTOMJESECNA) date = date.AddDays(180);
+
                     TipClanarine tipClanarine = TipClanarine.JEDNOMJESECNA;
-                    if (typeValue.Equals("tromjesecna")) tipClanarine = TipClanarine.TROMJESECNA;
-                    else if (typeValue.Equals("sestomjesecna")) tipClanarine = TipClanarine.SESTOMJESECNA;
-                    Teretana.getInstance().promijeniAtributeKorisnika(Int32.Parse(id), new Clan(prijavljeniClan.Ime, prijavljeniClan.Prezime, prijavljeniClan.EMail, prijavljeniClan.KorisnickoIme, prijavljeniClan.Sifra, tipClanarine, prijavljeniClan.DatumUclanjivanja, prijavljeniClan.BrojPosjeta, prijavljeniClan.TrenutnoPrisutan, prijavljeniClan.PlanIshrane));
+                    if (typeValue.Equals("tromjesecna")) tipClanarine = TipClanarine.TROMJESECNA;  
+                    else if (typeValue.Equals("sestomjesecna")) tipClanarine = TipClanarine.SESTOMJESECNA; 
+
+                    Teretana.getInstance().promijeniAtributeKorisnika(Int32.Parse(id), new Clan(prijavljeniClan.Ime, prijavljeniClan.Prezime, prijavljeniClan.EMail, prijavljeniClan.KorisnickoIme, prijavljeniClan.Sifra, tipClanarine, date, prijavljeniClan.BrojPosjeta, prijavljeniClan.TrenutnoPrisutan, prijavljeniClan.PlanIshrane));
                     
                 }
             }

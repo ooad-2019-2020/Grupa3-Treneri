@@ -1135,3 +1135,9 @@ C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debu
 C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.pdb
 C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.genruntimeconfig.cache
 C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\TreningDetalji.cshtml.g.cs
+C:\Users\Nermin\Source\Repos\Grupa3-Treneri\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\PrijavaTreninga.cshtml.g.cs
+C:\Users\Nermin\Source\Repos\Grupa3-Treneri\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\TreningDetalji.cshtml.g.cs
+C:\Users\Nermin\Source\Repos\Grupa3-Treneri\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\IznajmljivanjeOpreme.cshtml.g.cs
+C:\Users\Nermin\Source\Repos\Grupa3-Treneri\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\IznajmiOpremuDetalji.cshtml.g.cs
+C:\Users\Nermin\Source\Repos\Grupa3-Treneri\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\ZauzimanjeOpreme.cshtml.g.cs
+C:\Users\Nermin\Source\Repos\Grupa3-Treneri\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\ZauzmiOpremuDetalji.cshtml.g.cs

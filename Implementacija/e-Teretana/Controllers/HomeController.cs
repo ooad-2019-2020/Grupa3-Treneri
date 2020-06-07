@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Identity;
+using System.Net.Mail;
 
 namespace e_Teretana.Controllers
 {
@@ -90,6 +91,21 @@ namespace e_Teretana.Controllers
                     DbKorisnik korisnik = new DbKorisnik { Ime = ime, Prezime = prezime, EMail = email, KorisnickoIme = ime + prezime, Sifra = sifra };
                     DbClan clan = new DbClan { Clanarina = tipClanarine, DatumUclanjivanja = DateTime.Now, BrojPosjeta = 0, TrenutnoPrisutan = false, DbClanID = 0 };
                     Teretana.getInstance().dodajClana(korisnik, clan);
+
+                    MailMessage mail = new MailMessage();
+                    mail.To.Add(email);
+                    mail.From = new MailAddress("teretanae@gmail.com");
+                    mail.Subject = "E-Teretana: Pristupni podaci";
+                    string Body = "Dobrodošli u e-Teretanu! Vaše korisnicko ime je: " + ime + prezime;
+                    mail.Body = Body;
+                    mail.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new System.Net.NetworkCredential("teretanae@gmail.com", "koliko00");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
                     return RedirectToAction("Login");
                 }
             }

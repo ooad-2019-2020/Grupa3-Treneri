@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace e_Teretana.Models
         private DateTime pocetniDatum, krajnjiDatum;
         private Clan korisnikOpreme;
         private int sifra;
+        private int id;
         public Oprema(string nazivOpreme, TipZauzetostiOpreme tipZauzetosti, string opis, bool naCekanju, DateTime pocetniDatum, DateTime krajnjiDatum, Clan korisnikOpreme, int sifra)
         {
             NazivOpreme = nazivOpreme;
@@ -23,6 +25,7 @@ namespace e_Teretana.Models
             KrajnjiDatum = krajnjiDatum;
             KorisnikOpreme = korisnikOpreme;
             Sifra = sifra;
+            id = 0;
         }
 
         public Oprema (DbOprema dbOprema)
@@ -35,7 +38,9 @@ namespace e_Teretana.Models
             KrajnjiDatum = dbOprema.KrajnjiDatum;
             //KorisnikOpreme = korisnikOpreme;
             Sifra = dbOprema.Sifra;
+            id = dbOprema.DbOpremaID;
         }
+        public int ID { get => id; set=> id = value; }
 
         public string NazivOpreme { get => nazivOpreme; set => nazivOpreme = value; }
         public TipZauzetostiOpreme TipZauzetosti { get => tipZauzetosti; set => tipZauzetosti = value; }
