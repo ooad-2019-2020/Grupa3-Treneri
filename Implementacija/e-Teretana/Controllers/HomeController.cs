@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Identity;
 
 namespace e_Teretana.Controllers
 {
@@ -51,7 +52,7 @@ namespace e_Teretana.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(string ime, string prezime, string email, string sifra, string ponovljenaSifra, IFormCollection fc)
+        public async Task<IActionResult> Register(string ime, string prezime, string email, string sifra, string ponovljenaSifra, IFormCollection fc)
         {
           
             if (ime == null || prezime == null || sifra == null || ponovljenaSifra == null || email == null)
@@ -91,7 +92,7 @@ namespace e_Teretana.Controllers
                     
 
                     Teretana.getInstance().dodajClana(korisnik,clan);
-      
+                
                     return RedirectToAction("Login");
                 }
             }

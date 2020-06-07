@@ -30,6 +30,7 @@ namespace e_Teretana.Models
                 {
                     novosti.Add(new Novost(n));
                 }
+                clanovi = new List<Clan>();
                 context = new TeretanaContext();
             }
 
