@@ -14,6 +14,41 @@
     <link rel="stylesheet" href="css/assets5/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="css/assets5/css/sidebar.css">
     <link rel="stylesheet" href="css/assets5/css/styles.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #B2B2FF;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+            .sidenav a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #000000;
+                display: block;
+            }
+
+                .sidenav a:hover {
+                    color: #f1f1f1;
+                }
+
+        .main {
+            margin-left: 180px; /* Same as the width of the sidenav */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,19 +60,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-3">
-                    <aside class="flex-wrap" style="width: 200px;">
-                        <div class="bg-info" id="sidebar-wrapper" style="width: 200px;">
-                            <ul class="sidebar-nav">
-                                <li class="sidebar-brand"> <a class="text-dark" href="#">Korisničko ime</a></li>
-                                <li> <a class="nav-link text-dark" asp-area="" asp-controller="Clan" asp-action="Index">Novosti</a></li>
-                                <li> <a class="text-dark" href="#">Iznajmi opremu</a></li>
-                                <li> <a class="text-dark" href="#">Zauzmi opremu</a></li>
-                                <li> <a href="/Clan/PrijavaTreninga/@clan.DbClanID">Prijavi trening</a></li>
-                                <li> <a href="/Clan/Profil/@clan.DbClanID">Posjeti profil</a></li>
-                                <li> <ahref="/Clan/Postavke/@clan.DbClanID">Postavke profila</a></li>
-                            </ul>
-                        </div>
-                    </aside>
+                    <div class="sidenav">
+                        <a class="sidebar-brand"> <a class="text-dark" href="#">Korisničko ime</a></a>
+                        <a <a href="/Clan/Index/@clan.DbClanID">Novosti</a></a>
+                        <a> <a class="text-dark" href="#">Iznajmi opremu</a></a>
+                        <a> <a class="text-dark" href="#">Zauzmi opremu</a></a>
+                        <a> <a href="/Clan/PrijavaTreninga/@clan.DbClanID">Prijavi trening</a></a>
+                        <a> <a href="/Clan/Profil/@clan.DbClanID">Posjeti profil</a></a>
+                        <a><a href="/Clan/Postavke/@clan.DbClanID">Postavke profila</a></a>
+                    </div>
                 </div>
                 <div class="col-md-6 col-lg-9 col-xl-9">
                     <h1>Prijavi trening</h1>
@@ -61,7 +92,7 @@
                                                         <td>@t.Key.DatumOdrzavanja</td>
                                                         <td>@t.Key.Kapacitet</td>
                                                         <td>@t.Value.Ime @t.Value.Prezime</td>
-                                                         <td><a href="/Clan/Profil/@clan.DbClanID">Pogledaj detalje</a></td>
+                                                        <td><a href="/Clan/Profil/@clan.DbClanID">Pogledaj detalje</a></td>
                                                     </tr>
                                                 }
                                             }

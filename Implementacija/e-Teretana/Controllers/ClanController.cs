@@ -61,16 +61,8 @@ namespace e_Teretana.Controllers
             prijavljeniClan = new Clan(k, c);
 
             List <Novost> novosti = Teretana.getInstance().Novosti;
-            ViewData["Novost1"] = novosti[0];
-            ViewData["Novost2"] = novosti[1];
-            ViewData["Novost3"] = novosti[2];
-            ViewData["Novost4"] = novosti[0];
-            ViewData["Novost5"] = novosti[1];
-            ViewData["Novost6"] = novosti[2];
-            ViewData["Novost7"] = novosti[0];
-            ViewData["Novost8"] = novosti[1];
-            ViewData["Novost9"] = novosti[2];
-            ViewData["Novost10"] = novosti[0];
+            ViewData["novosti"] = novosti;
+            
 
             return View(k);
         }
@@ -185,7 +177,7 @@ namespace e_Teretana.Controllers
 
             prijavljeniClan = new Clan(k, c);
             ViewData["clan"] = c;
-          
+            //ViewData["korisnik"] = k;
             return View(prijavljeniClan);
         }
         [Route("/Clan/Profil/{id}")]
