@@ -182,7 +182,7 @@ namespace e_Teretana.Controllers
             if (prijavljeniClan.Clanarina == TipClanarine.JEDNOMJESECNA) date = date.AddDays(30);
             else if (prijavljeniClan.Clanarina == TipClanarine.TROMJESECNA) date = date.AddDays(90);
             else if (prijavljeniClan.Clanarina == TipClanarine.SESTOMJESECNA) date =  date.AddDays(180);
-            ViewData["date"] = date.ToString().Substring(0,8);
+            ViewData["date"] = date.Date.ToShortDateString();
             ViewData["clan"] = c;
             ViewData["username"] = prijavljeniClan.Ime;
             //ViewData["korisnik"] = k;

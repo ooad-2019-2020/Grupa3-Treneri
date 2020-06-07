@@ -1337,3 +1337,4 @@ C:\Users\Hamid\Source\Repos\Grupa3-Treneriiiii\Implementacija\e-Teretana\obj\Deb
 C:\Users\Hamid\Source\Repos\Grupa3-Treneriiiii\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.dll
 C:\Users\Hamid\Source\Repos\Grupa3-Treneriiiii\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.pdb
 C:\Users\Hamid\Source\Repos\Grupa3-Treneriiiii\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.genruntimeconfig.cache
+C:\Users\Hamid\Source\Repos\Grupa3-Treneriiiii\Implementacija\e-Teretana\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.e-Teretana - Web Deploy.json

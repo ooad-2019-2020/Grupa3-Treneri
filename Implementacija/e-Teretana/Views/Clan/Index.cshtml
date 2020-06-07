@@ -74,7 +74,7 @@ body {
                 </div>
                 <div class="col-md-6 col-lg-9 col-xl-9">
                     <ul class="list-group">
-                        @{ for (int i = 0; i < novosti.Count; i++)
+                        @{ for (int i = novosti.Count-1; i >=0; i--)
                             {
                         <li class="list-group-item">
                             <div class="card">
