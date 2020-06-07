@@ -48,14 +48,19 @@
             font-size: 20px; /* Increased text to enable scrolling */
             padding: 0px 10px;
         }
+        .button4 {
+            background-color: #e7e7e7;
+            color: black;
+        } 
     </style>
+
 </head>
 
 <body>
     @{
-        var treninzi = ViewData["treninzi"] as Dictionary<Trening, Trener>;
         var clan = ViewData["clan"] as DbClan;
         var username = ViewData["username"] as string;
+        var trening = ViewData["trening"] as Trening;
     }
     <div>
         <div class="container">
@@ -72,38 +77,16 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-9 col-xl-9">
-                    <h1>Prijavi trening</h1>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Aktivni treninzi</h4><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Termin održavanja</th>
-                                                <th>Kapacitet</th>
-                                                <th>Trener</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{ foreach (KeyValuePair<Trening, Trener> t in treninzi)
-                                                {
-                                                    <tr>
-                                                        <td>@t.Key.DatumOdrzavanja</td>
-                                                        <td>@t.Key.Kapacitet</td>
-                                                        <td>@t.Value.Ime @t.Value.Prezime</td>
-                                                        <td><a asp-area="" asp-controller="Clan" asp-action="TreningDetalji" asp-route-id=@clan.DbClanID asp-route-treningID=@t.Key.ID>Pogledaj detalje</a></td>
-                                                    </tr>
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
+                    <h1>Detalji o treningu</h1>
+                    <h4>Opis: </h4>
+                    <p>@trening.Opis</p>
+                    <h4>Datum održavanja: </h4>
+                    <p>@trening.DatumOdrzavanja</p>
+                    <h4>Trener: </h4>
+                    <p>@trening.Trener.Ime @trening.Trener.Prezime</p>
+                    <h4>Kapacitet: </h4>
+                    <p>@trening.Kapacitet</p>
+                        <button class="button4" type="submit" ><a asp-area="" asp-controller="Clan" asp-action="PrijavaNaTrening" asp-route-id=@clan.DbClanID asp-route-treningID=@trening.ID>Prijavi se</a></button>
                 </div>
             </div>
         </div>

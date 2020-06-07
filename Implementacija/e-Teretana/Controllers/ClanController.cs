@@ -62,6 +62,7 @@ namespace e_Teretana.Controllers
 
             List <Novost> novosti = Teretana.getInstance().Novosti;
             ViewData["novosti"] = novosti;
+            ViewData["username"] = prijavljeniClan.Ime;
             
 
             return View(k);
@@ -177,6 +178,7 @@ namespace e_Teretana.Controllers
 
             prijavljeniClan = new Clan(k, c);
             ViewData["clan"] = c;
+            ViewData["username"] = prijavljeniClan.Ime;
             //ViewData["korisnik"] = k;
             return View(prijavljeniClan);
         }
@@ -209,6 +211,7 @@ namespace e_Teretana.Controllers
             }
             System.Diagnostics.Debug.WriteLine(treninzi.Count);
             ViewData["treninzi"] = treninzi;
+            ViewData["username"] = prijavljeniClan.Ime;
             return View(prijavljeniClan);
         }
 
@@ -226,13 +229,30 @@ namespace e_Teretana.Controllers
             {
                 if (t.DatumOdrzavanja > new DateTime())
                 {
-                    treninzi.Add(new Trening(t), new Trener(context.Korisnik.Where(tr => tr.DbKorisnikID == t.DbTrenerID).FirstOrDefault()));
+                    System.Diagnostics.Debug.WriteLine("DB" + t.DbTreningID);
+                    Trening treningNovi = new Trening(t);
+                    System.Diagnostics.Debug.WriteLine("NEDB" + treningNovi.ID);
+                    treninzi.Add(treningNovi, new Trener(context.Korisnik.Where(tr => tr.DbKorisnikID == t.DbTrenerID).FirstOrDefault()));
                     //treninzi.Add(new Trening(t));
                 }
             }
             System.Diagnostics.Debug.WriteLine(treninzi.Count);
             ViewData["treninzi"] = treninzi;
+            ViewData["username"] = prijavljeniClan.Ime;
+            return View(prijavljeniClan);
+        }
+
+        [Route("/Clan/TreningDetalji/{id}")]
+        public async Task<IActionResult> TreningDetalji(int id, int treningID)
+        {
+            DbKorisnik k = context.Korisnik.Where(o => o.DbKorisnikID.Equals(id)).First();
+            DbClan c = context.Clan.Where(o => o.DbClanID.Equals(id)).First();
+            System.Diagnostics.Debug.WriteLine("primljeni id" + treningID);
+            Trening trening = new Trening(context.Trening.Where(x => x.DbTreningID == treningID).FirstOrDefault());
+            prijavljeniClan = new Clan(k, c);
             ViewData["clan"] = c;
+            ViewData["trening"] = trening;
+            ViewData["username"] = prijavljeniClan.Ime;
             return View(prijavljeniClan);
         }
 
@@ -256,6 +276,17 @@ namespace e_Teretana.Controllers
                 }
             }
             return RedirectToAction("Postavke", new { id = Int32.Parse(id) });
+        }
+
+        public IActionResult PrijavaNaTrening(string id, string treningID)
+        {
+            //DbClan clan = context.Clan.Where(x => x.DbClanID == Int32.Parse(id)).FirstOrDefault();
+            //DbTrening trening = context.Trening.Where(x => x.DbTreningID == Int32.Parse(treningID)).FirstOrDefault();
+            DbClanTrening prijavaClanaNaTrening= new DbClanTrening(Int32.Parse(id), Int32.Parse(treningID));
+            context.ClanTrening.Add(prijavaClanaNaTrening);
+            context.SaveChanges();
+            System.Diagnostics.Debug.WriteLine("DODJE DO OVOG DIJELA TU ");
+            return RedirectToAction("Index", new { id = Int32.Parse(id) });
         }
 
         [HttpPost]

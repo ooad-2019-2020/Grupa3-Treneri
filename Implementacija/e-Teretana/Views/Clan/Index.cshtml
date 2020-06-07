@@ -39,9 +39,9 @@ body {
   display: block;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
-}
+        .sidenav a:hover {
+            color: #ffc9c9;
+        }
 
 .main {
   margin-left: 180px; /* Same as the width of the sidenav */
@@ -55,6 +55,7 @@ body {
 <body>
     @{
         var novosti = ViewData["novosti"] as List<Novost>;
+        var username = ViewData["username"] as string;
 
     }
     <div>
@@ -62,7 +63,7 @@ body {
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                             <div class="sidenav">
-                                <a class="sidebar-brand"> <a class="text-dark" href="#">Korisničko ime</a></a>
+                                <a class="sidebar-brand"> <a class="text-white" >@username</a></a>
                                 <a <a href="/Clan/Index/@Model.DbKorisnikID">Novosti</a></a>
                                 <a> <a class="text-dark" href="#">Iznajmi opremu</a></a>
                                 <a> <a class="text-dark" href="#">Zauzmi opremu</a></a>

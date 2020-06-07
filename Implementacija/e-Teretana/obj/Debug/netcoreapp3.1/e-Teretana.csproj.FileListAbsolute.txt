@@ -1134,3 +1134,4 @@ C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debu
 C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.dll
 C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.pdb
 C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\e-Teretana.genruntimeconfig.cache
+C:\Users\Hamid\Source\Repos\Grupa3-Treneri000\Implementacija\e-Teretana\obj\Debug\netcoreapp3.1\Razor\Views\Clan\TreningDetalji.cshtml.g.cs

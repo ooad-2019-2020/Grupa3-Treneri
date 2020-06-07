@@ -15,6 +15,7 @@ namespace e_Teretana.Models
             PrijavljeniClanovi = prijavljeniClanovi;
             Tip = tip;
             Trener = trener;
+            ID = 0;
         }
 
         public Trening(DbTrening dbTrening)
@@ -24,7 +25,9 @@ namespace e_Teretana.Models
             Opis = dbTrening.Opis;
             //PrijavljeniClanovi = (List<Clan>)dbTrening.PrijavljeniClanovi;
             Tip = dbTrening.Tip;
+            Trener = new Trener(new TeretanaContext().Korisnik.Where(x => x.DbKorisnikID == dbTrening.DbTrenerID).FirstOrDefault());
             //Trener = dbTrening.Trener;
+            ID = dbTrening.DbTreningID;
         }
 
         public DateTime DatumOdrzavanja { get; set; }
@@ -33,6 +36,8 @@ namespace e_Teretana.Models
         public List<Clan> PrijavljeniClanovi { get; set; }
         public TipTreninga Tip { get; set; }
         public Trener Trener { get; set; }
+
+        public int ID { get; set; }
 
 
         public Iterator kreirajIterator()

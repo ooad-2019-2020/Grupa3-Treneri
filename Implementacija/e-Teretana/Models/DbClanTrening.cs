@@ -7,6 +7,12 @@ namespace e_Teretana.Models
 {
     public class DbClanTrening
     {
+        public DbClanTrening(int dbClanID, int dbTreningID)
+        {
+            DbClanID = dbClanID;
+            DbTreningID = dbTreningID;
+        }
+
         public int DbClanID { get; set; }
         public DbClan DbClan { get; set; }
 

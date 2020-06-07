@@ -40,7 +40,7 @@
             }
 
                 .sidenav a:hover {
-                    color: #f1f1f1;
+                    color: #ffc9c9;
                 }
 
         .main {
@@ -55,13 +55,14 @@
     @{ 
         var clan = ViewData["clan"] as DbClan;
         var treninzi = ViewData["treninzi"] as Dictionary<Trening,Trener>;
+        var username = ViewData["username"] as string;
     }
     <div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-3">
                     <div class="sidenav">
-                        <a class="sidebar-brand"> <a class="text-dark" href="#">Korisničko ime</a></a>
+                        <a class="sidebar-brand"> <a class="text-white">@username</a></a>
                         <a <a href="/Clan/Index/@clan.DbClanID">Novosti</a></a>
                         <a> <a class="text-dark" href="#">Iznajmi opremu</a></a>
                         <a> <a class="text-dark" href="#">Zauzmi opremu</a></a>
