@@ -31,9 +31,12 @@ namespace e_Teretana.Controllers
         public IActionResult Index()
         {
             List<Novost> novosti = Teretana.getInstance().Novosti;
-            ViewData["Novost1"] = novosti[0];
-            ViewData["Novost2"] = novosti[1];
-            ViewData["Novost3"] = novosti[2];
+            ViewData["Novost1"] = novosti[novosti.Count - 1];
+            ViewData["Novost2"] = novosti[novosti.Count - 2];
+            ViewData["Novost3"] = novosti[novosti.Count - 3];
+            ViewData["Novost4"] = novosti[novosti.Count - 4];
+            ViewData["Novost5"] = novosti[novosti.Count - 5];
+            ViewData["Novost6"] = novosti[novosti.Count - 6];
             return View();
         }
 

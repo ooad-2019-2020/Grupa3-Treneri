@@ -25,6 +25,9 @@
         var n1 = ViewData["Novost1"] as Novost;
         var n2 = ViewData["Novost2"] as Novost;
         var n3 = ViewData["Novost3"] as Novost;
+        var n4 = ViewData["Novost4"] as Novost;
+        var n5 = ViewData["Novost5"] as Novost;
+        var n6 = ViewData["Novost6"] as Novost;
     }
     <div class="article-list">
         <div class="container">
@@ -52,18 +55,18 @@
             <div class="row articles">
                 <div class="col-sm-6 col-md-4 item">
                     <a href="#"><img class="img-fluid" src="css/assets/img/default.jpg"></a>
-                    <h3 class="name">@n1.Naslov </h3>
-                    <p class="description">@n1.Tekst</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                    <h3 class="name">@n4.Naslov </h3>
+                    <p class="description">@n4.Tekst</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
-                    <a href="#"><img class="img-fluid" src="@Url.Content("~/css/news.jpg")"</a>
-                    <h3 class="name">@n2.Naslov</h3>
-                    <p class="description">@n2.Tekst</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                    <a><img class="img-fluid" src="@Url.Content("~/css/news.jpg")" /></a>
+                    <h3 class="name">@n5.Naslov</h3>
+                    <p class="description">@n5.Tekst</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
                 </div>
                 <div class="col-sm-6 col-md-4 item">
                     <a href="#"><img class="img-fluid" src="css/assets/img/default.jpg"></a>
-                    <h3 class="name">@n3.Naslov</h3>
-                    <p class="description">@n3.Tekst</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
+                    <h3 class="name">@n6.Naslov</h3>
+                    <p class="description">@n6.Tekst</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
